@@ -46,15 +46,15 @@ async function generatePDF() {
   
     Object.keys(normalRanges).forEach((test, i) => {
       const [desc, low, high] = normalRanges[test];
-      const status = ['정상', '높음', '낮음'][Math.floor(Math.random() * 3)];
-      let sample;
-  
-      if (status === '정상') {
-        sample = (Math.random() * (high - low) + low).toFixed(2);
-      } else if (status === '높음') {
-        sample = (Math.random() * (high * 0.5) + high + 0.1).toFixed(2); // high보다 확실히 크도록
+      
+      let sample = parseFloat((Math.random() * (high * 1.5)).toFixed(2));
+      let status = '';
+      if (sample < low) {
+        status = '낮음';
+      } else if (sample > high) {
+        status = '높음';
       } else {
-        sample = (Math.random() * (low * 0.2) + (low * 0.1)).toFixed(2); // low보다 확실히 작도록
+        status = '정상';
       }
   
       questions += `${i+1}. 환자의 ${test} 수치는 ${sample}입니다. 이 수치는?\n`;
