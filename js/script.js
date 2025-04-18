@@ -52,9 +52,9 @@ async function generatePDF() {
       if (status === '정상') {
         sample = (Math.random() * (high - low) + low).toFixed(2);
       } else if (status === '높음') {
-        sample = (Math.random() * (high * 1.5 - high) + high).toFixed(2);
+        sample = (Math.random() * (high * 0.5) + high + 0.1).toFixed(2); // high보다 확실히 크도록
       } else {
-        sample = (Math.random() * (low - low * 0.2) + low * 0.8).toFixed(2);
+        sample = (Math.random() * (low * 0.2) + (low * 0.1)).toFixed(2); // low보다 확실히 작도록
       }
   
       questions += `${i+1}. 환자의 ${test} 수치는 ${sample}입니다. 이 수치는?\n`;
